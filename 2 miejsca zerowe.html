@@ -12,7 +12,18 @@
     </head>
 
     <body>
-		<input type="number" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="cena" value="" />
+      <p>Podaj cenę netto</p>
+      <input type="number" id="cena" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="cena" value="" />
+      <input type="submit" value="Oblicz" onclick="wynik()">
+      <p>Podatek VAT wynosi</p>
+      <p id="wynik"></p>
+    <script>
+      function wynik(){
+      var zl = document.getElementById("cena").value;
+      var vat = Number(zl) * 0.23;
+      document.getElementById("wynik").innerHTML=vat
+    }
+    </script>
     </body>
 
 </html>
