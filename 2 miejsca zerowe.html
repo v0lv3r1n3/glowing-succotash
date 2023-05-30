@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 
-
 <html lang="en">
 
     <head>
@@ -12,18 +11,41 @@
     </head>
 
     <body>
-      <p>Podaj cenę netto</p>
-      <input type="number" id="cena" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="cena" value="" />
-      <input type="submit" value="Oblicz" onclick="wynik()">
-      <p>Podatek VAT wynosi</p>
-      <p id="wynik"></p>
-    <script>
-      function wynik(){
-      var zl = document.getElementById("cena").value;
-      var vat = Number(zl) * 0.23;
-      document.getElementById("wynik").innerHTML=vat
+      <p>Podaj cenę</p>
+      <input type="number" id="cena" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="cena" value=""><span style="margin-left:5px;">zł</span>
+      <p>Wybierz stawkę podatku</p>
+          <input type="radio" id="23" name="stawka" value="23">
+          <label for="23">23%</label><br>
+          <input type="radio" id="8" name="stawka" value="8">
+          <label for="8">8%</label><br>
+          <input type="radio" id="5" name="stawka" value="5">
+          <label for="5">5%</label><br>
+      <p>Wybierz rodzaj ceny</p>
+          <input type="radio" id="netto" name="rodzaj" value="netto">
+          <label for="netto">Netto</label><br>
+          <input type="radio" id="brutto" name="rodzaj" value="brutto">
+          <label for="brutto">Brutto</label><br>
+          <input type="submit" value="Oblicz" onclick="oblicz()">
+          <script>
+      function oblicz(){
+      event.preventDefault()
+      var zl = document.getElementById("cena").value
+      if (document.getElementById("23").checked)
+      var stawka = 0.23;
+      else if (document.getElementById("8").checked)
+      var stawka = 0.08;
+      else if (document.getElementById("5").checked)
+      var stawka = 0.05;
+      if (document.getElementById("netto").checked)
+      var vat = Number(zl) * stawka;
+      else if (document.getElementById("brutto").checked)
+      var vat = Number(zl) / (1 + stawka) * stawka;
+document.getElementById("wynik").innerHTML=vat.toFixed(2)
     }
     </script>
+    <p>Podatek VAT wynosi</p>
+    
+    <output id="wynik"></output><span style="margin-left:5px;">zł</span>
     </body>
 
 </html>
