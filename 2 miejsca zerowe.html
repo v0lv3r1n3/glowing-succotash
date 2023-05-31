@@ -11,22 +11,27 @@
     </head>
 
     <body>
-      <p>Podaj cenę</p>
+      <p>Podaj cenę:</p>
       <input type="number" id="cena" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="cena" value=""><span style="margin-left:5px;">zł</span>
-      <p>Wybierz stawkę podatku</p>
+      <p>Wybierz stawkę podatku:</p>
           <input type="radio" id="23" name="stawka" value="23">
           <label for="23">23%</label><br>
           <input type="radio" id="8" name="stawka" value="8">
           <label for="8">8%</label><br>
           <input type="radio" id="5" name="stawka" value="5">
           <label for="5">5%</label><br>
-      <p>Wybierz rodzaj ceny</p>
+      <p>Wybierz rodzaj ceny:</p>
           <input type="radio" id="netto" name="rodzaj" value="netto">
           <label for="netto">Netto</label><br>
           <input type="radio" id="brutto" name="rodzaj" value="brutto">
           <label for="brutto">Brutto</label><br>
-          <input type="submit" value="Oblicz" onclick="oblicz()">
-          <script>
+          <input type="submit" value="Oblicz" onclick="pokaz();oblicz()">
+<script>
+     function pokaz() {
+ document.getElementById('odp').style.display = "block";
+}
+</script>
+<script>
       function oblicz(){
       event.preventDefault()
       var zl = document.getElementById("cena").value
@@ -41,11 +46,12 @@
       else if (document.getElementById("brutto").checked)
       var vat = Number(zl) / (1 + stawka) * stawka;
 document.getElementById("wynik").innerHTML=vat.toFixed(2)
-    }
-    </script>
-    <p>Podatek VAT wynosi</p>
-    
-    <output id="wynik"></output><span style="margin-left:5px;">zł</span>
+  }
+        </script>
+    <div id="odp"  style="display:none;">
+        <p>Podatek VAT wynosi:</p>
+        <output id="wynik"></output><span style="margin-left:3px;">zł</span>
+        </div>
     </body>
 
 </html>
