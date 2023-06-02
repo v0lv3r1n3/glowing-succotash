@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>bajo jajo</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/v0lv3r1n3/glowing-succotash@master/js/script.js"></script>
+    </head>
+
+    <body>
+          <p>Podaj przychód:</p>
+          <ul>
+            <li>Z umowy o pracę: <input type="number" id="uop" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="umowa o pracę" value="" step="0.01"><span style="margin-left:5px;">zł</span><br>
+                <input type="number" id="uop" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="umowa o pracę" value="" step="0.01"></li>
+            <li>Z umowy zlecenia: <input type="number" id="uz" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="umowa zlecenie" value="" step="0.01"><span style="margin-left:5px;">zł</span></li>
+      <p>Podaj koszty uzyskania przychodu:</p>
+      <input type="number" id="kup" data-decimal="2" oninput="enforceNumberValidation(this)" list="productName" placeholder="koszty" value="" step="0.01"/>
+       <span style="margin-left:2px;">zł</span>
+       <datalist id="productName"> 
+           <option value="250">250</option> 
+           <option value="300">300</option> 
+           </datalist>
+           <p>Podaj wysokość zapłaconych składek społecznych:</p>
+      <input type="number" id="skl" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="składki społeczne" value="" step="0.01"><span style="margin-left:5px;">zł</span>
+           <p><input type="submit" value="Oblicz" onclick="pokaz();oblicz()"></p>
+<script>
+     function pokaz() {
+ document.getElementById('odp').style.display = "block";
+}
+</script>
+<script>
+      function oblicz(){
+      event.preventDefault()
+      var przy = document.getElementById("przy").value    
+      var kup = document.getElementById("kup").value 
+      var skl = document.getElementById("skl").value
+      var doch = przy-kup
+      var podst = doch.toFixed(0)
+document.getElementById("wynik").innerHTML=doch.toFixed(0)    
+  }
+        </script>
+    <div id="odp"  style="display:none;">
+        <p>Dochód wynosi:</p>
+        <output id="wynik"></output><span style="margin-left:3px;">zł</span>
+        </div>
+    </body>
+
+</html>
