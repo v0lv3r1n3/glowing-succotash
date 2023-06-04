@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>bajo jajo</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    </head>
+    <body>
+        <script>
+            $(document).ready(function() {
+    $("input[name$='top']").click(function() {
+        var test = $(this).val();
+
+        $("div.desc").hide();
+        $("#Top" + test).show();
+    });
+});
+        </script>
+        <script>
+            function 
+        </script>
+        <div id="myRadioGroup">
+            <input type="radio" name="top" value="2"  />2 Cars
+            <input type="radio" name="top" value="3" />3 Cars
+            <input type="radio" name="top" value="4"  />4 cars
+        
+            <div id="Top2" class="desc" style="display: none;">
+                <input type="radio" name="e" value="2"  />e
+            <input type="radio" name="f" value="3" />f
+            <input type="radio" name="g" value="4"  />g
+            </div>
+            <div id="Top3" class="desc" style="display: none;">
+                3 Cars
+            </div>
+            <div id="Top4" class="desc" style="display: none;">
+                4 Cars
+            </div>
+        </div>
+    </body>
