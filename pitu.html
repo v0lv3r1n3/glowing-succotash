@@ -12,33 +12,47 @@
 
     <body>
           <p>Podaj przychód:</p>
-            Z umowy o pracę: <input type="number" id="uop" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="umowa o pracę" value="" step="0.01"><span style="margin-left:5px;">zł</span><br>
+            Z umowy o pracę: 
+            <input type="number" id="uop" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="umowa o pracę" value="" step="0.01"><span style="margin-left:5px;">zł</span><br>
             <script>
 		    $('input[id=uop]').keyup(function(){
 if($(this).val().length)
-$('#koszty').show();
+$('#koszty, #wpuz, #wpuod').show();
     else
-    $('#koszty').hide();
+    $('#koszty, #wpuz, #wpuod').hide();
 });
 		</script>
 		<script>
-		    $('input[id=uop]').keyup(function(){
-if($(this).val().length)
-$('#chor').hide();
-    else
-    $('#chor').show();
-});
+		$(function()
+    {
+      $('[id="uozs"]').change(function()
+      {
+        if ($(this).is(':checked'))
+            $('#chor').hide();
+        else
+            $('#chor').show();
+      });
+    });
 		</script>
-                 <div id="koszty" style="display:none;">Wybierz wysokość kosztów uzyskania przychodu<br>
+        <div id="koszty" style="display:none;">Wybierz wysokość kosztów uzyskania przychodu<br>
          <input type="radio" id="250" name="koszt" value="250">
           <label for="25">250 zł</label>
          <input type="radio" id="300" name="koszt" value="300">
           <label for"300">300 zł</label><br></div>
-               Z umowy zlecenia: <input type="number" id="uz" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="umowa zlecenie" value="" step="0.01"><span style="margin-left:5px;">zł</span><br>
+               Z umowy zlecenia: 
+               <input type="number" id="uz" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="umowa zlecenie" value="" step="0.01"><span style="margin-left:5px;">zł</span><br>
+               <div id="wpuz" style="display:none;">
                <input type="checkbox" id="uozs"><label for="uozs">Umowa z własnym pracodawcą</label><br>
-               <div id="chor" style="display:block;"><input type="checkbox" id="dobr"><label for="dobr">Dobrowolne ubezpieczenie chorobowe</label><br></div>
-               Z umowy o dzieło: <input type="number" id="uod" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="umowa o dzieło" value="" step="0.01"><span style="margin-left:5px;">zł</span><br>
-               <input type="checkbox" id="uod"><label for="uod">Umowa z własnym pracodawcą</label><br>
+                </div>
+               <div id="chor" style="display:block;">
+                <input type="checkbox" id="dobr">
+                <label for="dobr">Dobrowolne ubezpieczenie chorobowe</label><br>
+                </div>
+               Z umowy o dzieło: 
+               <input type="number" id="uod" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="umowa o dzieło" value="" step="0.01"><span style="margin-left:5px;">zł</span><br>
+               <div id="wpuod" style="display:none;">
+                <input type="checkbox" id="uod"><label for="uod">Umowa z własnym pracodawcą</label><br>
+                </div>
                <input type="checkbox" id="prawa"><label for="prawa">Umowa z przekazaniem praw autorskich</label><br>
       <input type="submit" value="Oblicz" onclick="pokaz();oblicz()"><br>
 <script>
@@ -49,16 +63,21 @@ $('#chor').hide();
 <script>
       function oblicz(){
       event.preventDefault()
-      var przy = document.getElementById("przy").value    
-      var kup = document.getElementById("kup").value 
-      var skl = document.getElementById("skl").value
-      var doch = przy-kup
-      var podst = doch.toFixed(0)
-document.getElementById("wynik").innerHTML=doch.toFixed(0)
+      var puop = document.getElementById("uop").value
+      var puz = document.getElementById("uz").value
+      var puod = document.getElementById("uod").value
+      if (document.getElementById("250").checked)
+      var kupuop = $('input[name="koszt"]:checked').val();
+      else if (document.getElementById("300").checked)
+      var kupuop = $('input[name="koszt"]:checked').val();
+      else
+      var kupuop = 0
+    var doch = Number(puop) - Number(kupuop) + Number(puz)
+document.getElementById("wynik").innerHTML=doch
   }
         </script>
     <div id="odp"  style="display:none;">
-        <p>Podatek wynosi:</p>
+        <p>Zaliczka na podatek wynosi:</p>
         <output id="wynik"></output><span style="margin-left:3px;">zł</span>
         </div>
     </body>
