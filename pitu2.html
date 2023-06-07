@@ -21,21 +21,30 @@
 });
         </script>
         <script>
+            function pokaz() {
+        document.getElementById('odp').style.display = "block";
+       }
+       </script>
+        <script>
             function oblicz() {
                 event.preventDefault()
       var przy = document.getElementById("przy").value
       var rok = document.getElementById("rok").value
+      var ulga = 
       if (document.getElementById("uop").checked){
-      var skl = Number(przy) * 0.1371
-      if rok > 120000
-      var podst = Number(przy) - skl.toFixed(2)
-      
-        }
+        if 
+      }
+      var kup = $('input:[name=kupuop]:checked').val();
+      var podst = Number(przy) - skl.toFixed(2) - Number(kup)
       else if (document.getElementById("uz").checked)
      
       else if (document.getElementById("uod").checked)
-      
-      document.getElementById("wynik").innerHTML=pit.toFixed(2)
+
+      if rok > 120000
+      var pit = podst*0.32 - 300
+      else if rok + przy > 120000
+      var pit = podst*0.32 - 300
+      document.getElementById("wynik").innerHTML=pit.toFixed(0)
             }
         </script>
             <p>Podaj łączny przychód w poprzednich miesiącach od początku roku</p>
@@ -49,9 +58,9 @@
             </div>
         
             <div id="Typ1" class="desc" style="display: none;">
-                <input type="radio" name="" value="2"  />e
-            <input type="radio" name="" value="3" />f
-            <input type="radio" name="" value="4"  />g
+            Wybierz koszty uzyskania przychodu<br>
+            <input id="250" type="radio" name="kupuop" value="250" /> <label for="250">250 zł</label><br>
+            <input id="300" type="radio" name="kupuop" value="300" /> <label for="300">300 zł</label><br>
             </div>
             <div id="Typ2" class="desc" style="display: none;">
                 3 Cars
@@ -59,7 +68,9 @@
             <div id="Typ3" class="desc" style="display: none;">
                 4 Cars
             </div>
-            <input type="submit" value="Oblicz" onclick="oblicz()">
-            <p>Zaliczka na PIT wynosi:</p>
-        <output id="wynik"></output><span style="margin-left:3px;">zł</span>
+            <input type="submit" value="Oblicz" onclick="pokaz();oblicz()">
+            <div id="odp"  style="display:none;">
+                <p>Zaliczka na PIT wynosi:</p>
+                <output id="wynik"></output><span style="margin-left:3px;">zł</span>
+                </div>
     </body>
