@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>bajo jajo</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/v0lv3r1n3/glowing-succotash@master/js/script.js"></script>
+    </head>
+    <body>
+        <script>
+            $(document).ready(function() {
+    $("input[name$='typ']").click(function() {
+        var test = $(this).val();
+
+        $("div.desc").hide();
+        $("#Typ" + test).show();
+    });
+});
+        </script>
+        <script>
+            function oblicz() {
+                event.preventDefault()
+      var zl = document.getElementById("przy").value
+      if (document.getElementById("uop").checked){
+        }
+      else if (document.getElementById("uz").checked)
+      var stawka = 0.08;
+      else if (document.getElementById("uod").checked)
+      var stawka = 0.05;
+      document.getElementById("wynik").innerHTML=pit.toFixed(2)
+            }
+        </script>
+            <p>Podaj przychód od początku roku</p>
+            <input type="number" id="przy" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="przychód" value=""><span style="margin-left:5px;">zł</span><br>
+            <input type="radio" id="uop" name="typ" value="1"  />2 Cars<br>
+            <input type="radio" id="uz" name="typ" value="2" />3 Cars<br>
+            <input type="radio" id="uod" name="typ" value="3"  />4 cars<br>
+        
+            <div id="Typ1" class="desc" style="display: none;">
+                <input type="radio" name="" value="2"  />e
+            <input type="radio" name="f" value="3" />f
+            <input type="radio" name="g" value="4"  />g
+            </div>
+            <div id="Typ2" class="desc" style="display: none;">
+                3 Cars
+            </div>
+            <div id="Typ3" class="desc" style="display: none;">
+                4 Cars
+            </div>
+            <input type="submit" value="Oblicz" onclick="oblicz()">
+            <p>Zaliczka na PIT wynosi:</p>
+        <output id="wynik"></output><span style="margin-left:3px;">zł</span>
+    </body>
