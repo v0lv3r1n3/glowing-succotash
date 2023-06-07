@@ -23,26 +23,35 @@
         <script>
             function oblicz() {
                 event.preventDefault()
-      var zl = document.getElementById("przy").value
+      var przy = document.getElementById("przy").value
+      var rok = document.getElementById("rok").value
       if (document.getElementById("uop").checked){
+      var skl = Number(przy) * 0.1371
+      if rok > 120000
+      var podst = Number(przy) - skl.toFixed(2)
+      
         }
       else if (document.getElementById("uz").checked)
-      var stawka = 0.08;
+     
       else if (document.getElementById("uod").checked)
-      var stawka = 0.05;
+      
       document.getElementById("wynik").innerHTML=pit.toFixed(2)
             }
         </script>
-            <p>Podaj przychód od początku roku</p>
+            <p>Podaj łączny przychód w poprzednich miesiącach od początku roku</p>
+            <input type="number" id="rok" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="przychód" value=""><span style="margin-left:5px;">zł</span><br>
+            <p>Podaj przychód w bieżącym miesiącu</p>
             <input type="number" id="przy" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="przychód" value=""><span style="margin-left:5px;">zł</span><br>
-            <input type="radio" id="uop" name="typ" value="1"  />2 Cars<br>
-            <input type="radio" id="uz" name="typ" value="2" />3 Cars<br>
-            <input type="radio" id="uod" name="typ" value="3"  />4 cars<br>
+            <p>Wybierz typ umowy</p>
+            <input type="radio" id="uop" name="typ" value="1"  />Umowa o pracę<br>
+            <input type="radio" id="uz" name="typ" value="2" />Umowa zlecenie<br>
+            <input type="radio" id="uod" name="typ" value="3"  />Umowa o dzieło<br>
+            </div>
         
             <div id="Typ1" class="desc" style="display: none;">
                 <input type="radio" name="" value="2"  />e
-            <input type="radio" name="f" value="3" />f
-            <input type="radio" name="g" value="4"  />g
+            <input type="radio" name="" value="3" />f
+            <input type="radio" name="" value="4"  />g
             </div>
             <div id="Typ2" class="desc" style="display: none;">
                 3 Cars
