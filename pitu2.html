@@ -30,20 +30,28 @@
                 event.preventDefault()
       var przy = document.getElementById("przy").value
       var rok = document.getElementById("rok").value
-      var ulga = 
-      if (document.getElementById("uop").checked){
-        if 
-      }
+      const ulga = 300
+      if Number(rok) > 208050
+      var spol = 0
+      else if Number(rok) + Number(przy) > 208050
+      var spol = (208050 - Number(rok)) * 0.1126
+      else 
+      var spol = Number(przy) * 0.1126
+      if (document.getElementById("uop").checked)
+      {
+      var chor = Number(przy) * 0.0245;
+      var skl = Number(spol) + Number(chor)
       var kup = $('input:[name=kupuop]:checked').val();
       var podst = Number(przy) - skl.toFixed(2) - Number(kup)
+      }
       else if (document.getElementById("uz").checked)
      
       else if (document.getElementById("uod").checked)
 
-      if rok > 120000
-      var pit = podst*0.32 - 300
+      if Number(rok) > 120000
+      var pit = podst*0.32 - ulga;
       else if rok + przy > 120000
-      var pit = podst*0.32 - 300
+      var pit = (120000 - Number(rok)) + podst*0.32 - ulga;
       document.getElementById("wynik").innerHTML=pit.toFixed(0)
             }
         </script>
