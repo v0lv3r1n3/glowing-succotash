@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title>bajo jajo</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/v0lv3r1n3/glowing-succotash@master/js/script.js"></script>
+    </head>
+    <body>
+        <script>
+            $(document).ready(function() {
+    $("input[name$='typ']").click(function() {
+        var test = $(this).val();
+
+        $("div.desc").hide();
+        $("#Typ" + test).show();
+    });
+});
+        </script>
+        <script>
+            function pokaz() {
+        document.getElementById('odp').style.display = "block";
+       }
+       </script>
+        <script>
+            function oblicz() {
+                event.preventDefault()
+      var przy = document.getElementById("przy").value
+      var rok = document.getElementById("rok").value
+      const ulga = 300
+      if Number(rok) > 208050
+      var spol = 0
+      else if Number(rok) + Number(przy) > 208050
+      var spol = (208050 - Number(rok)) * 0.1126
+      else 
+      var spol = Number(przy) * 0.1126
+      if (document.getElementById("uop").checked)
+      {
+      var chor = Number(przy) * 0.0245;
+      var skl = Number(spol) + Number(chor)
+      var kup = $('input:[name=kupuop]:checked').val();
+      var podst = Number(przy) - skl.toFixed(2) - Number(kup)
+      if Number(rok) > 120000
+      var pit = podst*0.32 - ulga;
+      else if rok + przy > 120000
+      var pit = (120000 - Number(rok)) + podst*0.32 - ulga;
+      }
+      else if (document.getElementById("uz").checked)
+     
+      else if (document.getElementById("uod").checked)
+
+      
+      document.getElementById("wynik").innerHTML=pit.toFixed(0)
+            }
+        </script>
+        <p>Wybierz typ nieruchomości</p>
+        <input type="radio" id="grunt" name="typ" value="1"  />Grunt<br>
+        <input type="radio" id="budynek" name="typ" value="2" />Budynek lub jego część<br>
+        <input type="radio" id="uod" name="typ" value="3"  />Budowla<br>
+            <p>Podaj łączny przychód w poprzednich miesiącach od początku roku</p>
+            <input type="number" id="rok" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="przychód" value=""><span style="margin-left:5px;">zł</span><br>
+            <p>Podaj przychód w bieżącym miesiącu</p>
+            <input type="number" id="przy" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="przychód" value=""><span style="margin-left:5px;">zł</span><br>
+            <div id="Typ1" class="desc" style="display: none;">
+            <p>Wybierz rodzaj gruntu</p>
+            <select name="grutyp" id="grutyp">
+                <option value="1.16">Związany z prowadzeniem działalności gospodarczej</option>
+                <option value="5.79">Pod wodami powierzchniowymi stojącymi lub wodami powierzchniowymi płynącymi jezior i zbiorników sztucznych</option>
+                <option value="0.61">Pozostały, w tym zajęty na prowadzenie odpłatnej statutowej działalności pożytku publicznego przez organizacje pożytku publicznego</option>
+                <option value="3.81">Niezabudowany objęty obszarem rewitalizacji i położony na terenach, dla których miejscowy plan zagospodarowania przestrzennego przewiduje przeznaczenie pod zabudowę mieszkaniową, usługową albo zabudowę o przeznaczeniu mieszanym obejmującym wyłącznie te rodzaje zabudowy, jeżeli od dnia wejścia w życie tego planu w odniesieniu do tych gruntów upłynął okres 4 lat, a w tym czasie nie zakończono budowy zgodnie z przepisami prawa budowlanego</option>
+              </select>
+              <p>Podaj łączną powierchnię</p>
+            <input type="number" id="powgru" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span style="margin-left:5px;">m2</span><br>
+            </div>
+            <div id="Typ2" class="desc" style="display: none;">
+                <p>Wybierz rodzaj budynku</p>
+                <select name="budtyp" id="budtyp">
+                    <option value="1">Mieszkalny</option>
+                    <option value="28.78">Związany z prowadzeniem działalności gospodarczej oraz budynek mieszkalny lub jego część zajęty na prowadzenie działalności gospodarczej</option>
+                    <option value="13.47">Zajęty na prowadzenie działalności gospodarczej w zakresie obrotu kwalifikowanym materiałem siewnym</option>
+                    <option value="5.87">Związany z udzielaniem świadczeń zdrowotnych w rozumieniu przepisów o działalności leczniczej, zajęty przez podmioty udzielające tych świadczeń</option>
+                    <option value="9.71">pozostały, w tym zajętych na prowadzenie odpłatnej statutowej działalności pożytku publicznego przez organizacje pożytku publicznego</option>
+                </select>
+            </div>
+            <div id="Typ3" class="desc" style="display: none;">
+                4 Cars
+            </div>
+            <input type="submit" value="Oblicz" onclick="pokaz();oblicz()">
+            <div id="odp"  style="display:none;">
+                <p>Zaliczka na PIT wynosi:</p>
+                <output id="wynik"></output><span style="margin-left:3px;">zł</span>
+                </div>
+    </body>
