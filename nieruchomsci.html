@@ -20,50 +20,10 @@
     });
 });
         </script>
-        <script>
-            function pokaz() {
-        document.getElementById('odp').style.display = "block";
-       }
-       </script>
-        <script>
-            function oblicz() {
-                event.preventDefault()
-      var przy = document.getElementById("przy").value
-      var rok = document.getElementById("rok").value
-      const ulga = 300
-      if Number(rok) > 208050
-      var spol = 0
-      else if Number(rok) + Number(przy) > 208050
-      var spol = (208050 - Number(rok)) * 0.1126
-      else 
-      var spol = Number(przy) * 0.1126
-      if (document.getElementById("uop").checked)
-      {
-      var chor = Number(przy) * 0.0245;
-      var skl = Number(spol) + Number(chor)
-      var kup = $('input:[name=kupuop]:checked').val();
-      var podst = Number(przy) - skl.toFixed(2) - Number(kup)
-      if Number(rok) > 120000
-      var pit = podst*0.32 - ulga;
-      else if rok + przy > 120000
-      var pit = (120000 - Number(rok)) + podst*0.32 - ulga;
-      }
-      else if (document.getElementById("uz").checked)
-     
-      else if (document.getElementById("uod").checked)
-
-      
-      document.getElementById("wynik").innerHTML=pit.toFixed(0)
-            }
-        </script>
         <p>Wybierz typ nieruchomości</p>
         <input type="radio" id="grunt" name="typ" value="1"  />Grunt<br>
         <input type="radio" id="budynek" name="typ" value="2" />Budynek lub jego część<br>
-        <input type="radio" id="uod" name="typ" value="3"  />Budowla<br>
-            <p>Podaj łączny przychód w poprzednich miesiącach od początku roku</p>
-            <input type="number" id="rok" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="przychód" value=""><span style="margin-left:5px;">zł</span><br>
-            <p>Podaj przychód w bieżącym miesiącu</p>
-            <input type="number" id="przy" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="przychód" value=""><span style="margin-left:5px;">zł</span><br>
+        <input type="radio" id="budowla" name="typ" value="3"  />Budowla<br>
             <div id="Typ1" class="desc" style="display: none;">
             <p>Wybierz rodzaj gruntu</p>
             <select name="grutyp" id="grutyp">
@@ -82,15 +42,46 @@
                     <option value="28.78">Związany z prowadzeniem działalności gospodarczej oraz budynek mieszkalny lub jego część zajęty na prowadzenie działalności gospodarczej</option>
                     <option value="13.47">Zajęty na prowadzenie działalności gospodarczej w zakresie obrotu kwalifikowanym materiałem siewnym</option>
                     <option value="5.87">Związany z udzielaniem świadczeń zdrowotnych w rozumieniu przepisów o działalności leczniczej, zajęty przez podmioty udzielające tych świadczeń</option>
-                    <option value="9.71">pozostały, w tym zajętych na prowadzenie odpłatnej statutowej działalności pożytku publicznego przez organizacje pożytku publicznego</option>
-                </select>
+                    <option value="9.71">Pozostały, w tym zajęty na prowadzenie odpłatnej statutowej działalności pożytku publicznego przez organizacje pożytku publicznego</option>
+                </select><br>
+                <p>Podaj powierchnię budynku o wysokości powyżej 2,2 m</p>
+                <input type="number" id="powbudp22" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span style="margin-left:5px;">m2</span><br>
+                <p>Podaj powierchnię budynku o wysokości od 1,4 do 2,2 m włącznie</p>
+                <input type="number" id="powbud14d22" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span style="margin-left:5px;">m2</span><br>
             </div>
             <div id="Typ3" class="desc" style="display: none;">
-                4 Cars
+                <p>Podaj wartość budowli</p>
+                <input type="number" id="warbudo" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span style="margin-left:5px;">zł</span><br>
             </div>
+            <script>
+                function pokaz() {
+            document.getElementById('odp').style.display = "block";
+           }
+           </script>
+            <script>
+            function oblicz() {
+            event.preventDefault()
+            if (document.getElementById("grunt").checked){
+            var stawka = document.getElementById("grutyp").value;
+            var podst = document.getElementById("powgru").value;
+            var nier = Number(stawka) * Number(podst);
+                    }
+            else if (document.getElementById("budynek").checked){
+            var stawka = document.getElementById("budtyp").value;
+            var podst1 = document.getElementById("powbudp22").value;
+            var podst2 = document.getElementById("powbud14d22").value;
+            var nier = Number(stawka) * (Number(podst1) + Number(podst2) * 0.5);
+                    }
+            else if (document.getElementById("budowla").checked){
+            var podst = document.getElementById("warbudo").value;
+            var nier = Number(podst) * 0.02;
+            } 
+          document.getElementById("wynik").innerHTML=nier.toFixed(0)
+                }
+            </script>
             <input type="submit" value="Oblicz" onclick="pokaz();oblicz()">
             <div id="odp"  style="display:none;">
-                <p>Zaliczka na PIT wynosi:</p>
+                <p>Podatek od nieruchomości wynosi:</p>
                 <output id="wynik"></output><span style="margin-left:3px;">zł</span>
                 </div>
     </body>
