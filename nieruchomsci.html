@@ -19,6 +19,20 @@
         $("#Typ" + test).show();
     });
 });
+$(document).ready(function(){
+    $('#grutyp').on('change', function() {
+      if ( this.value == '5.79')
+      {
+        $("#ha").show();
+        $("#m2").hide();
+      }
+      else
+      {
+        $("#m2").show();
+        $("#ha").hide();
+      }
+    });
+});
         </script>
         <p>Wybierz typ nieruchomości</p>
         <input type="radio" id="grunt" name="typ" value="1"  />Grunt<br>
@@ -33,7 +47,7 @@
                 <option value="3.81">Niezabudowany objęty obszarem rewitalizacji i położony na terenach, dla których miejscowy plan zagospodarowania przestrzennego przewiduje przeznaczenie pod zabudowę mieszkaniową, usługową albo zabudowę o przeznaczeniu mieszanym obejmującym wyłącznie te rodzaje zabudowy, jeżeli od dnia wejścia w życie tego planu w odniesieniu do tych gruntów upłynął okres 4 lat, a w tym czasie nie zakończono budowy zgodnie z przepisami prawa budowlanego</option>
               </select>
               <p>Podaj łączną powierchnię</p>
-            <input type="number" id="powgru" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span id="m2" style="margin-left:5px;">m2</span><span id="ha" style="margin-left:5px;">ha</span><br>
+            <input type="number" id="powgru" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span id="m2" style="margin-left:5px;">m2</span><span id="ha" style="margin-left:5px;display:none">ha</span><br>
             </div>
             <div id="Typ2" class="desc" style="display: none;">
                 <p>Wybierz rodzaj budynku</p>
