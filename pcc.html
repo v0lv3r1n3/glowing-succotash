@@ -17,6 +17,30 @@
 
         $("div.desc").hide();
         $("#Typ" + test).show();
+        });
+});
+$(document).ready(function(){
+    $("input[name='sprzedaż']").click(function() {
+      if (this.value == '0')
+      {
+        $("#tutaj").hide();
+      }
+      else
+      {
+        $("#tutaj").show();
+      }
+    });
+});
+        $(document).ready(function(){
+    $("input[name='hipoteka']").click(function() {
+      if (this.value == '0.001')
+      {
+        $("#kwota").show();
+      }
+      else
+      {
+        $("#kwota").hide();
+      }
     });
 });
         </script>
@@ -30,11 +54,14 @@
         <input type="radio" id="usp" name="typ" value="7"  />Umowa spółki<br>
             <div id="Typ1" class="desc" style="display: none;">
             <p>Czego dotyczy umowa sprzedaży?</p>
+            <input type="radio" id="u1000" name="sprzedaż" value="0"/>Rzeczy ruchomych których wartość rynkowa nie przekracza 1000 zł<br>
             <input type="radio" id="normal" name="sprzedaż" value="0.02" />Nieruchomości, rzeczy ruchomych, prawa użytkowania wieczystego, 
             własnościowego prawa do lokalu mieszkalnego, spółdzielczego prawa do lokalu użytkowego<br>
-            <input type="radio" id="inne" name="sprzedaż" value="0.01" />Inne prawa majątkowe, np. sprzedaż akcji<br>
+            <input type="radio" id="inne" name="sprzedaż" value="0.01" />Innych praw majątkowych, np. sprzedaż akcji<br>
+            <div id="tutaj">
             <p>Podaj wartość rynkową rzeczy lub prawa majątkowego</p>
             <input type="number" id="warus" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
+            </div>
             </div>
             <div id="Typ2" class="desc" style="display: none;">
                 <p>Podaj różnicę wartości rynkowych zamienianych lokali lub praw do lokali</p>
@@ -56,11 +83,11 @@
             <p>Wybierz rodzaj wierzytelności</p>
             <input type="radio" id="normal" name="hipoteka" value="0.001" />Istniejące<br>
             <input type="radio" id="inne" name="hipoteka" value="19" />O wysokości nieustalonej<br>
-            <p>Podaj kwotę zabezpieczonej wierzytelności</p>
-            <input type="number" id="waruh" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
-            <p>Podaj kwotę zabezpieczonej wierzytelności</p>
-            <input type="number" id="waruh" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
-        </div>
+            <div id="kwota"  style="display:none;">
+             <p>Podaj kwotę zabezpieczonej wierzytelności</p>
+            <input type="number" id="waruh" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>   
+            </div>
+            </div>            
     <div id="Typ7" class="desc" style="display: none;">
         <p>Czego dotyczy czynność cywilnoprawna?</p>
         <select name="usptyp" id="usptyp">
@@ -68,8 +95,12 @@
             <option value="2">Wniesienia lub podwyższenia wkładów do spółki osobowej albo podwyższenie kapitału zakładowego</option>
             <option value="3">Dopłaty</option>
             <option value="4">Pożyczki udzielonej spółce przez wspólnika</option>
-
           </select>
+          <p id="a">Podaj wartość wkładów do spółki osobowej lub kapitału zakładowego</p>
+          <p id="b">Podaj wartość wkładów powiększających majątek spółki osobowej albo wartość, o którą podwyższono kapitał zakładowy</p>
+          <p id="c">Podaj kwotę dopłat</p>
+          <p id="d">Podaj kwotę lub wartość pożyczki</p>
+          <input type="number" id="warusp" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
         </div>
             <script>
                 function pokaz() {
@@ -79,27 +110,46 @@
             <script>
             function oblicz() {
             event.preventDefault()
-            if (document.getElementById("grunt").checked){
-            var stawka = document.getElementById("grutyp").value;
-            var podst = document.getElementById("powgru").value;
-            var nier = Number(stawka) * Number(podst);
+            if (document.getElementById("us").checked){
+            if (document.getElementById("u1000").checked){
+            var pcc = 0;
+            }
+            else if (document.getElementById("normal").checked){
+            var podst = document.getElementById("warus").value;
+            var pcc = Number(podst) * 0.02;
+            }
+            else if (document.getElementById("inne").checked){
+            var podst = document.getElementById("warus").value;
+            var pcc = Number(podst) * 0.01;
+            }           
                     }
-            else if (document.getElementById("budynek").checked){
-            var stawka = document.getElementById("budtyp").value;
-            var podst1 = document.getElementById("powbudp22").value;
-            var podst2 = document.getElementById("powbud14d22").value;
-            var nier = Number(stawka) * (Number(podst1) + Number(podst2) * 0.5);
+            else if (document.getElementById("uz").checked){
+            var podst = document.getElementById("waruz").value;
+            var pcc = Number(podst) * 0.02;
                     }
-            else if (document.getElementById("budowla").checked){
-            var podst = document.getElementById("warbudo").value;
-            var nier = Number(podst) * 0.02;
+            else if (document.getElementById("uda").checked){
+            var podst = document.getElementById("waruda").value;
+            var pcc = Number(podst) * 0.02;
             } 
-          document.getElementById("wynik").innerHTML=nier.toFixed(0)
+            else if (document.getElementById("udo").checked){
+            var podst = document.getElementById("warudo").value;
+            var pcc = Number(podst) * 0.02;
+            }
+            else if (document.getElementById("uds").checked){
+            var podst = document.getElementById("waruds").value;
+            var pcc = Number(podst) * 0.02;
+            }
+            else if (document.getElementById("uh").checked){
+            if 
+            var podst = document.getElementById("waruh").value;
+            var pcc = Number(podst) * 0.02;
+            }
+          document.getElementById("wynik").innerHTML=pcc.toFixed(0)
                 }
             </script>
             <input type="submit" value="Oblicz" onclick="pokaz();oblicz()">
             <div id="odp"  style="display:none;">
-                <p>Podatek od nieruchomości wynosi:</p>
+                <p>Podatek od czynności cywilnoprawnych wynosi:</p>
                 <output id="wynik"></output><span style="margin-left:3px;">zł</span>
                 </div>
     </body>
