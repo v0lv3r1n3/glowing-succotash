@@ -44,6 +44,32 @@ $(document).ready(function(){
     });
 });
         </script>
+<script>
+$(document).ready(function(){
+    $('input[name=typusp]').on('change', function(){
+    var n = $(this).val();
+    switch(n)
+    {
+            case '5':
+                  $('#show').html("Podaj wartość wkładów do spółki osobowej lub kapitału zakładowego");
+                  $("#wpisz").show();
+                  break;
+            case '6':
+                  $('#show').html("Podaj wartość wkładów powiększających majątek spółki osobowej albo wartość, o którą podwyższono kapitał zakładowy");
+                  $("#wpisz").show();
+                  break;
+            case '7':
+                  $('#show').html("Podaj kwotę dopłat");
+                  $("#wpisz").show();
+                  break;
+            case '8':
+                  $('#show').html("Podaj kwotę lub wartość pożyczki");
+                  $("#wpisz").show();
+                  break;
+        }
+    });
+});
+</script>
         <p>Wybierz rodzaj czynności cywilnoprawnej</p>
         <input type="radio" id="us" name="typ" value="1"  />Umowa sprzedaży<br>
         <input type="radio" id="uz" name="typ" value="2" />Umowa zamiany<br>
@@ -81,26 +107,22 @@ $(document).ready(function(){
         </div>
         <div id="Typ6" class="desc" style="display: none;">
             <p>Wybierz rodzaj wierzytelności</p>
-            <input type="radio" id="inna" name="hipoteka" value="19" />O wysokości nieustalonej<br>
-            <input type="radio" id="normal" name="hipoteka" value="0.001" />Istniejące<br>
+            <input type="radio" id="norma" name="hipoteka" value="0.001" />Istniejące<br>
+            <input type="radio" id="inna" name="hipoteka" value="19" />O wysokości nieustalonej<br>           
             <div id="kwota">
-             <p>Podaj kwotę zabezpieczonej wierzytelności</p>
+            <p>Podaj kwotę zabezpieczonej wierzytelności</p>
             <input type="number" id="waruh" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="kwota" value=""><span style="margin-left:5px;">zł</span><br>   
             </div>
             </div>            
     <div id="Typ7" class="desc" style="display: none;">
         <p>Czego dotyczy czynność cywilnoprawna?</p>
-        <select name="usptyp" id="usptyp">
-            <option value="1">Zawarcia umowy</option>
-            <option value="2">Wniesienia lub podwyższenia wkładów do spółki osobowej albo podwyższenie kapitału zakładowego</option>
-            <option value="3">Dopłaty</option>
-            <option value="4">Pożyczki udzielonej spółce przez wspólnika</option>
-          </select>
-          <p id="a">Podaj wartość wkładów do spółki osobowej lub kapitału zakładowego</p>
-          <p id="b">Podaj wartość wkładów powiększających majątek spółki osobowej albo wartość, o którą podwyższono kapitał zakładowy</p>
-          <p id="c">Podaj kwotę dopłat</p>
-          <p id="d">Podaj kwotę lub wartość pożyczki</p>
-          <input type="number" id="warusp" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
+        <input type="radio" name="typusp" value="5"  />Zawarcia umowy<br>
+        <input type="radio" name="typusp" value="6" />Wniesienia lub podwyższenia wkładów do spółki osobowej albo podwyższenie kapitału zakładowego<br>
+        <input type="radio" name="typusp" value="7"  />Dopłaty<br>
+        <input type="radio" name="typusp" value="8"  />Pożyczki udzielonej spółce przez wspólnika<br>
+        <div id='show'></div>
+        <div id="wpisz" style="display: none;">
+        <input type="number" id="warusp" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
         </div>
             <script>
                 function pokaz() {
@@ -140,19 +162,20 @@ $(document).ready(function(){
             var pcc = Number(podst) * 0.02;
             }
             else if (document.getElementById("uh").checked){
-            if (document.getElementById("inna").checked){
-            var pcc = 19;
-            }
-            else if (document.getElementById("normal").checked){
+            if (document.getElementById("norma").checked){
             var podst = document.getElementById("waruh").value;
             var pcc = Number(podst) * 0.02;
-            } 
+            }
+            else if (document.getElementById("inna").checked){
+            var pcc = 19;
+            }
             }
             else if (document.getElementById("usp").checked){
             var podst = document.getElementById("warusp").value;
             var pcc = Number(podst) * 0.005;
+            }
           document.getElementById("wynik").innerHTML=pcc.toFixed(0)
-                }
+                
               }
             </script>
             <input type="submit" value="Oblicz" onclick="pokaz();oblicz()">
