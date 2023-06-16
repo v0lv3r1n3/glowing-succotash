@@ -31,15 +31,15 @@ $(document).ready(function(){
       }
     });
 });
-        $(document).ready(function(){
+$(document).ready(function(){
     $("input[name='hipoteka']").click(function() {
-      if (this.value == '0.001')
+      if (this.value == '19')
       {
-        $("#kwota").show();
+        $("#kwota").hide();
       }
       else
       {
-        $("#kwota").hide();
+        $("#kwota").show();
       }
     });
 });
@@ -81,11 +81,11 @@ $(document).ready(function(){
         </div>
         <div id="Typ6" class="desc" style="display: none;">
             <p>Wybierz rodzaj wierzytelności</p>
+            <input type="radio" id="inna" name="hipoteka" value="19" />O wysokości nieustalonej<br>
             <input type="radio" id="normal" name="hipoteka" value="0.001" />Istniejące<br>
-            <input type="radio" id="inne" name="hipoteka" value="19" />O wysokości nieustalonej<br>
-            <div id="kwota"  style="display:none;">
+            <div id="kwota">
              <p>Podaj kwotę zabezpieczonej wierzytelności</p>
-            <input type="number" id="waruh" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>   
+            <input type="number" id="waruh" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="kwota" value=""><span style="margin-left:5px;">zł</span><br>   
             </div>
             </div>            
     <div id="Typ7" class="desc" style="display: none;">
@@ -140,12 +140,20 @@ $(document).ready(function(){
             var pcc = Number(podst) * 0.02;
             }
             else if (document.getElementById("uh").checked){
-            if 
+            if (document.getElementById("inna").checked){
+            var pcc = 19;
+            }
+            else if (document.getElementById("normal").checked){
             var podst = document.getElementById("waruh").value;
             var pcc = Number(podst) * 0.02;
+            } 
             }
+            else if (document.getElementById("usp").checked){
+            var podst = document.getElementById("warusp").value;
+            var pcc = Number(podst) * 0.005;
           document.getElementById("wynik").innerHTML=pcc.toFixed(0)
                 }
+              }
             </script>
             <input type="submit" value="Oblicz" onclick="pokaz();oblicz()">
             <div id="odp"  style="display:none;">
