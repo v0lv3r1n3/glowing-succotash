@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="pl">
 
     <head>
 
         <meta charset="UTF-8">
-        <title>bajo jajo</title>
+        <title>Kalkulator podatki od nieruchomości</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/v0lv3r1n3/glowing-succotash@master/js/script.js"></script>
     </head>
@@ -46,8 +46,8 @@ $(document).ready(function(){
                 <option value="0.61">Pozostały, w tym zajęty na prowadzenie odpłatnej statutowej działalności pożytku publicznego przez organizacje pożytku publicznego</option>
                 <option value="3.81">Niezabudowany objęty obszarem rewitalizacji i położony na terenach, dla których miejscowy plan zagospodarowania przestrzennego przewiduje przeznaczenie pod zabudowę mieszkaniową, usługową albo zabudowę o przeznaczeniu mieszanym obejmującym wyłącznie te rodzaje zabudowy, jeżeli od dnia wejścia w życie tego planu w odniesieniu do tych gruntów upłynął okres 4 lat, a w tym czasie nie zakończono budowy zgodnie z przepisami prawa budowlanego</option>
               </select>
-              <p>Podaj łączną powierchnię</p>
-            <input type="number" id="powgru" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span id="m2" style="margin-left:5px;">m2</span><span id="ha" style="margin-left:5px;display:none">ha</span><br>
+              <p>Podaj łączną powierchnię gruntu</p>
+            <input type="number" id="powgru" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span id="m2" style="margin-left:5px;">m2</span><span id="ha" style="margin-left:5px;display:none">ha</span><br>
             </div>
             <div id="Typ2" class="desc" style="display: none;">
                 <p>Wybierz rodzaj budynku</p>
@@ -59,13 +59,13 @@ $(document).ready(function(){
                     <option value="9.71">Pozostały, w tym zajęty na prowadzenie odpłatnej statutowej działalności pożytku publicznego przez organizacje pożytku publicznego</option>
                 </select><br>
                 <p>Podaj powierchnię budynku o wysokości powyżej 2,2 m</p>
-                <input type="number" id="powbudp22" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span style="margin-left:5px;">m2</span><br>
+                <input type="number" id="powbudp22" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span style="margin-left:5px;">m2</span><br>
                 <p>Podaj powierchnię budynku o wysokości od 1,4 do 2,2 m włącznie</p>
-                <input type="number" id="powbud14d22" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span style="margin-left:5px;">m2</span><br>
+                <input type="number" id="powbud14d22" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span style="margin-left:5px;">m2</span><br>
             </div>
             <div id="Typ3" class="desc" style="display:none;">
                 <p>Podaj wartość budowli</p>
-                <input type="number" id="warbudo" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span style="margin-left:5px;">zł</span><br>
+                <input type="number" id="warbudo" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="powierchnia" value=""><span style="margin-left:5px;">zł</span><br>
             </div>
             <script>
                 function pokaz() {
