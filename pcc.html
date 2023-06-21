@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="pl">
 
     <head>
 
         <meta charset="UTF-8">
-        <title>bajo jajo</title>
+        <title>Kalkulator podatku od czynności cywilnoprawnych</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/gh/v0lv3r1n3/glowing-succotash@master/js/script.js"></script>
     </head>
@@ -86,24 +86,24 @@ $(document).ready(function(){
             <input type="radio" id="inne" name="sprzedaż" value="0.01" />Innych praw majątkowych, np. sprzedaż akcji<br>
             <div id="tutaj">
             <p>Podaj wartość rynkową rzeczy lub prawa majątkowego</p>
-            <input type="number" id="warus" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
+            <input type="number" id="warus" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
             </div>
             </div>
             <div id="Typ2" class="desc" style="display: none;">
                 <p>Podaj różnicę wartości rynkowych zamienianych lokali lub praw do lokali</p>
-                <input type="number" id="waruz" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="różnica" value=""><span style="margin-left:5px;">zł</span><br>
+                <input type="number" id="waruz" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="różnica" value=""><span style="margin-left:5px;">zł</span><br>
             </div>
             <div id="Typ3" class="desc" style="display: none;">
                 <p>Podaj wartość długów i ciężarów lub zobowiązań przejętych przez obdarowanego</p>
-                <input type="number" id="waruda" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość" value=""><span style="margin-left:5px;">zł</span><br>
+                <input type="number" id="waruda" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="wartość" value=""><span style="margin-left:5px;">zł</span><br>
                 </div>
             <div id="Typ4" class="desc" style="display: none;">
                     <p>Podaj wartość rynkową nieruchomości lub prawa użytkowania wieczystego</p>
-                    <input type="number" id="warudo" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
+                    <input type="number" id="warudo" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
             </div>
             <div id="Typ5" class="desc" style="display: none;">
                 <p>Podaj wartość rynkową rzeczy lub prawa majątkowego nabytego ponad wartość udziału we współwłasności lub spadku</p>
-                <input type="number" id="waruds" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
+                <input type="number" id="waruds" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
         </div>
         <div id="Typ6" class="desc" style="display: none;">
             <p>Wybierz rodzaj wierzytelności</p>
@@ -111,7 +111,7 @@ $(document).ready(function(){
             <input type="radio" id="inna" name="hipoteka" value="19" />O wysokości nieustalonej<br>           
             <div id="kwota">
             <p>Podaj kwotę zabezpieczonej wierzytelności</p>
-            <input type="number" id="waruh" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="kwota" value=""><span style="margin-left:5px;">zł</span><br>   
+            <input type="number" id="waruh" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="kwota" value=""><span style="margin-left:5px;">zł</span><br>   
             </div>
             </div>            
     <div id="Typ7" class="desc" style="display: none;">
@@ -122,7 +122,7 @@ $(document).ready(function(){
         <input type="radio" name="typusp" value="8"  />Pożyczki udzielonej spółce przez wspólnika<br>
         <div id='show'></div>
         <div id="wpisz" style="display: none;">
-        <input type="number" id="warusp" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
+        <input type="number" id="warusp" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="wartość rynkowa" value=""><span style="margin-left:5px;">zł</span><br>
         </div>
 	    </div>
             <script>
