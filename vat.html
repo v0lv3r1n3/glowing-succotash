@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html lang="pl">
 
     <head>
 
         <meta charset="UTF-8">
-        <title>bajo jajo</title>
+        <title>Kalkulator podatku VAT</title>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/gh/v0lv3r1n3/glowing-succotash@master/js/script.js"></script>
     </head>
 
     <body>
       <p>Podaj cenę:</p>
-      <input type="number" id="cena" data-decimal="2" oninput="enforceNumberValidation(this)" placeholder="cena" value=""><span style="margin-left:5px;">zł</span>
+      <input type="number" id="cena" data-decimal="2" min="0" oninput="enforceNumberValidation(this)" placeholder="cena" value=""><span style="margin-left:5px;">zł</span>
       <p>Wybierz stawkę podatku:</p>
           <input type="radio" id="23" name="stawka" value="23">
           <label for="23">23%</label><br>
